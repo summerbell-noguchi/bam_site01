@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>娘を探しています</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-family: 'Verdana', sans-serif;
+            padding: 30px;
+            margin: 100px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+/* スマホ向けのスタイル */
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #daughterPhoto {
+        width: 100%;
+    }
+
+    #daughterInfo p {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 7px 15px;
+    }
+}
+
+        h1 {
+            font-size: 24px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        #daughterPhoto {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: filter 2s;
+        }
+
+        .inverted {
+            filter: invert(100%);
+        }
+
+        #daughterInfo {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #daughterInfo p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>娘を探しています</h1>
+    <img id="daughterPhoto" src="IMG_7201.jpg" alt="娘の写真">
+    
+    <div id="daughterInfo">
+        <p>名前: 金谷 夏鈴 (かなや かりん)</p>
+        <p>年齢: 24歳</p>
+        <p>身長: 約163cm</p>
+        <p>体型: やせ型</p>
+
+        </div>
+        
+        <p>今年3月未明に娘が失踪しました。見かけた方、何か知っている方は下のフォームより連絡をお願いします。</p>
+    <a href="https://forms.gle/7thfCthnhdtu1RQa7"><button id="reportButton">発見報告フォーム</button></a>
+
+
+    <script>
+setInterval(function() {
+    const photo = document.getElementById('daughterPhoto');
+
+    // 画像の色を反転
+    photo.classList.add('inverted');
+
+    // 1秒後に元の色に戻す
+    setTimeout(function() {
+        photo.classList.remove('inverted');
+    }, 1000);
+}, 6000); // 5秒 + 1秒 = 6秒ごとに上記の処理を繰り返す
+            
+    
+let clickCount = 0; // これはボタンをクリックした回数を数える変数だよ
+
+document.getElementById('reportButton').addEventListener('click', function(event) {
+    event.preventDefault(); // ボタンの通常の動作（リンク先に飛ぶこと）を中断するよ
+
+    clickCount++; // ボタンをクリックするたびに、この数を1増やすよ
+
+    // それぞれのクリック回数に応じて、表示するメッセージを変えるよ
+    if (clickCount == 1) {
+        alert('やめて');
+    } else if (clickCount == 2) {
+        alert('お願い');
+    } else if (clickCount == 3) {
+        alert('戻りたくない');
+    } else if (clickCount == 4) {
+        typeWriterText('逃げやがって、誰が産んでやったと思ってるんだ', function() {
+            window.location.href = 'https://forms.gle/7thfCthnhdtu1RQa7'; // ここに飛ばしたいURLを入れるよ
+        });
+    }
+});
+
+let typeWriterText = function(message, callback) {
+    let container = document.createElement('div');
+    container.style.fontSize = '18px';
+    container.style.color = '#8B0000';
+    container.style.marginTop = '20px';
+    document.body.appendChild(container);
+
+    let index = 0;
+
+    function type() {
+        if (index < message.length) {
+            container.textContent += message[index];
+            index++;
+            setTimeout(type, 100); // この数字を小さくすると早く、大きくすると遅く打ち込む速度が変わるよ
+        } else if (callback) {
+            setTimeout(callback, 1000); // ここはテキストが全部表示されてからの待ち時間だよ
+        }
+    }
+
+    type();
+};
+
+    </script>
+</body>
+</html>
